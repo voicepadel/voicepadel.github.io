@@ -1,3 +1,5 @@
+import { startSingalR } from '../../services/singalR.js';
+
 let seconds = 0,
 minutes = 0,
 hours = 0;
@@ -7,6 +9,15 @@ let isPaused = false; // Variable para controlar el estado del temporizador
 const urlParams = new URLSearchParams(window.location.search);
 const matchIdentifier = urlParams.get('matchIdentifier');
 let currentGameGuid = "";
+let useSignalR = true;
+
+let connection = await startSingalR(matchIdentifier);
+
+connection.on("GetNewState", (message) => {
+  // Crear un nuevo elemento de mensaje
+  console.log("new state:", message);
+  setMatchPoints(message);
+});
 
 console.log('matchIdentifier: ' + matchIdentifier);
 
@@ -101,28 +112,41 @@ document
 .addEventListener("click", pauseTimer);
 
 function countPoint(teamA){
-fetch(`https://voice-paddel-fmgzeugkg5bjh6f9.brazilsouth-01.azurewebsites.net/api/match/${matchIdentifier}/countPoint`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      setGameConcurrencyVersion: currentGameGuid,
-      pointTeamA: teamA
-    })
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Error en la solicitud');
-    }
-    return response.json();
-  })
-  .then(data => {
-    setMatchPoints(data);
-  })
-  .catch(error => {
-    console.error('Hubo un problema con la solicitud:', error);
-  });
+  let message = {
+    matchName: matchIdentifier,
+    setGameConcurrencyVersion: currentGameGuid,
+    pointTeamA: teamA
+  };
+
+  console.log('count point:', message);
+
+  if (useSignalR) {
+    connection.invoke("CountPoint", message).catch(err => console.error(err));
+  }
+  else {
+    fetch(`https://voice-paddel-fmgzeugkg5bjh6f9.brazilsouth-01.azurewebsites.net/api/match/${matchIdentifier}/countPoint`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          setGameConcurrencyVersion: currentGameGuid,
+          pointTeamA: teamA
+        })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error en la solicitud');
+        }
+        return response.json();
+      })
+      .then(data => {
+        setMatchPoints(data);
+      })
+      .catch(error => {
+        console.error('Hubo un problema con la solicitud:', error);
+      });
+  }
 }
 
 document
