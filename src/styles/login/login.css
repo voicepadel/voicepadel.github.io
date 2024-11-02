@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #ececec;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+p {
+  font-size: 1.1rem;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  border: none;
+  font-size: 1.2rem;
+}
+
+.btn-light {
+  font-size: 1.2rem;
+}
+
+.rounded-5 {
+  border-radius: 30px;
+}
+
+.rounded-4 {
+  border-radius: 20px;
+}
+
+.shadow {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/*------------ Login container ------------*/
+
+.box-area {
+  width: 930px;
+}
+
+/*------------ Left box ------------*/
+
+.left-box {
+  position: relative;
+}
+
+.left-box .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Ajusta la opacidad (0.5 es 50%) */
+  z-index: 1; /* Hace que la capa de la imagen esté por debajo del texto */
+}
+
+.left-box p,
+.left-box small {
+  position: relative;
+  z-index: 2; /* Hace que el texto esté por encima de la capa oscura */
+}
+
+.left-box p {
+  font-size: larger;
+}
+
+/*------------ Right box ------------*/
+
+.right-box {
+  padding: 40px 30px 40px 40px;
+}
+
+/*------------ Custom Placeholder ------------*/
+
+::placeholder {
+  font-size: 16px;
+}
+
+.rounded-4 {
+  border-radius: 20px;
+}
+.rounded-5 {
+  border-radius: 30px;
+}
+
+/*------------ For small screens------------*/
+
+@media only screen and (max-width: 768px) {
+  .box-area {
+    margin: 0 10px;
+  }
+  .left-box {
+    overflow: hidden;
+    padding: 1rem;
+  }
+  .right-box {
+    padding: 20px;
+  }
+
+  .left-box h2 {
+    font-size: larger;
+  }
+
+  .left-box p {
+    font-size: smaller;
+  }
+}

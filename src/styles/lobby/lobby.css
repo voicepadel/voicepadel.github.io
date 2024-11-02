@@ -1,0 +1,97 @@
+/* General Styles */
+body {
+  background-color: #f8f9fa;
+}
+
+/* Header */
+.header {
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 24px;
+  position: relative;
+}
+
+.header .close {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  cursor: pointer;
+  color: white;
+}
+
+/* Game Selection */
+.games-group button {
+  border-radius: 20px;
+}
+
+/* Players Section */
+.player-section {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.team {
+  min-width: 40%;
+  text-align: center;
+}
+
+.player-input {
+  max-width: 200px;
+}
+
+.logo-equipo-rojo {
+  width: 100px;
+  height: 100px;
+}
+
+.logo-equipo-azul {
+  width: 100px;
+  height: 100px;
+}
+
+.logo-versus {
+  width: 70px;
+  height: 70px;
+}
+
+.btn {
+  background: #daae51;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 30px;
+  font-size: 18px;
+  color: #ffff;
+}
+
+.btn:hover {
+  background: #d53369;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 30px;
+  font-size: 18px;
+  color: #ffff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .player-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team {
+    min-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .btn-serve {
+    width: 100%;
+    justify-content: center;
+  }
+}
