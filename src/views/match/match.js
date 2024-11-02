@@ -104,7 +104,7 @@ pauseButton.textContent = isPaused
 }
 
 // Iniciar el cronómetro al cargar la vista
-window.onload = onLoad;
+onLoad();
 
 // Agregar evento al botón de pausar
 document
