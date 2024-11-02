@@ -1,4 +1,4 @@
-import { redirectTo } from "../../services/redirector";
+import { redirectTo } from "../../services/redirector.js";
 
 // Script para manejar la selección del modo de juego
 document
