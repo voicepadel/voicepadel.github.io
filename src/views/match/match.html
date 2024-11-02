@@ -15,6 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="../../styles/contar-puntos/match.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
   </head>
   <body>
     <!-- Header -->
@@ -22,7 +23,18 @@
       <span class="close ms-2">&times;</span>
       Partido en Curso
     </div>
-
+    <br>  
+    <div class="text-center">
+      <button id="turnOnMic" class="btn btn-primary">
+        <i class="bi bi-mic"></i> Activar Micrófono
+      </button>
+    
+      <button id="turnOffMic" class="btn btn-danger hidden">
+          <i class="bi bi-mic-mute"></i> Silenciar Micrófono
+      </button>
+      
+    </div>
+    
     <div class="container m-5 text-center row mx-auto">
       <div class="timer text-center mx-auto">
         <p><b>Tiempo</b></p>

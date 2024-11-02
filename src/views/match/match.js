@@ -10,6 +10,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const matchIdentifier = urlParams.get('matchIdentifier');
 let currentGameGuid = "";
 let useSignalR = true;
+let microphoneManuallyStopped = false;
 
 let connection = await startSingalR(matchIdentifier);
 
@@ -204,12 +205,38 @@ function setTestRecognition(){
             console.error('Speech recognition error detected: ' + event.error);
         };
 
+        recognition.onaudiostart = () => {
+          showTurnOffMic();
+          console.log("El reconocimiento de voz ha comenzado a capturar el audio.");
+        };
+
         recognition.onend = () => {
+          showTurnOnMic();
+          if(!microphoneManuallyStopped) {
             console.log('Reconocimiento de voz detenido. Reiniciando...');
             recognition.start(); // Reinicia el reconocimiento si se detiene
+          }
         };
 
         // Start recognition
-        recognition.start();
+        document.getElementById('turnOnMic').addEventListener('click', function() {
+          microphoneManuallyStopped = false;
+          recognition.start();
+        });
+
+        document.getElementById('turnOffMic').addEventListener('click', function() {
+          microphoneManuallyStopped = true;
+          recognition.stop();
+        });
+    }
+
+    function showTurnOnMic() {
+      document.getElementById('turnOnMic').style.display = 'inline-block';
+      document.getElementById('turnOffMic').style.display = 'none';
+    }
+
+    function showTurnOffMic() {
+      document.getElementById('turnOnMic').style.display = 'none';
+      document.getElementById('turnOffMic').style.display = 'inline-block';
     }
 }
