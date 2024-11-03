@@ -48,9 +48,28 @@
                 <a id="createLobby" href="#" class="custom-btn d-flex flex-column justify-content-center align-items-center fw-bolder">
                     <i class="bi bi-plus-circle"></i> Crear Lobby
                 </a>
-                <a href="#" class="custom-btn d-flex flex-column justify-content-center align-items-center fw-bolder">
-                    <i class="bi bi-box-arrow-in-right"></i> Unirse a Lobby
-                </a>
+                <!-- Botón que activa el modal -->
+                <button type="button" class="custom-btn d-flex flex-column justify-content-center align-items-center fw-bolder" data-bs-toggle="modal" data-bs-target="#modalUnirseALobby">
+                  <i class="bi bi-box-arrow-in-right"></i> Unirse a Lobby
+                </button>
+                <!-- Modal -->
+                <div class="modal fade" id="modalUnirseALobby" tabindex="-1" aria-labelledby="modalUnirseALobbyLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="modalUnirseALobbyLabel">Pega el código de la sala</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <input id="modalInput" class="form-control" placeholder="código aquí">
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" id="modalBtn" class="btn btn-primary" data-bs-dismiss="modal">Unirse</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 <a id="myAccount" href="#" class="custom-btn d-flex flex-column justify-content-center align-items-center fw-bolder">
                     <i class="bi bi-person"></i>
                 </a>
@@ -68,5 +87,7 @@
       </footer>
     </div>
     <script type="module" src="../services/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
