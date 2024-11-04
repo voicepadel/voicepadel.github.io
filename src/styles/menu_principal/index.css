@@ -21,6 +21,7 @@ main {
     text-decoration: none;
     background-color: #00000054;
     border-radius: 10px;
+    border: none;
 }
 
 .custom-btn i {
@@ -30,6 +31,7 @@ main {
 
 .custom-btn:hover {
     cursor: pointer;
+    color: orangered;
 }
 
 
