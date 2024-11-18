@@ -22,10 +22,39 @@ connection.on("GetNewState", (message) => {
 
 console.log("matchIdentifier: " + matchIdentifier);
 
+document.getElementById("matchIdentifier").value = matchIdentifier;
+document.getElementById("waLink").href = `https://wa.me/?text=Te%20invito%20a%20unirte%20a%20mi%20partida%20de%20padel,%20haz%20click%20en%20el%20siguiente%20link%20para%20unirte:%0Ahttps%3A%2F%2Fvoicepadel.github.io%2Fsrc%2Fviews%2Fmatch%2Fmatch.html%3FmatchIdentifier%3D${matchIdentifier}`;
+
 function onLoad() {
   getMatchCurrentState();
   startTimer();
 }
+
+function copyToClipboard() {
+  const text = document.getElementById("matchIdentifier").value;
+  console.log('epa')
+  // Usar la API del portapapeles moderna
+  navigator.clipboard.writeText(text)
+    .then(() => {
+      // Mostrar mensaje de éxito si la copia fue exitosa
+      const successMessage = document.getElementById("copySuccess");
+      successMessage.style.display = "block";
+
+      // Ocultar mensaje después de unos segundos
+      setTimeout(() => {
+        successMessage.style.display = "none";
+      }, 2000);
+    })
+    .catch(err => {
+      console.error("Error al copiar al portapapeles: ", err);
+    });
+}
+
+function setEventListeners() {
+  document.getElementById("copiarBoton").addEventListener("click", copyToClipboard);
+}
+
+setEventListeners();
 
 function setMatchPoints(data) {
   document.getElementById("pointsTeamA").innerText = data.currentPointsTeamA
