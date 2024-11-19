@@ -1,4 +1,5 @@
 import { startSingalR } from "../../services/singalR.js";
+import { redirectTo } from "../../services/redirector.js";
 
 let seconds = 0,
   minutes = 0,
@@ -52,6 +53,9 @@ function copyToClipboard() {
 
 function setEventListeners() {
   document.getElementById("copiarBoton").addEventListener("click", copyToClipboard);
+  document.getElementById("btnFinalizarPartido").addEventListener("click", function() {
+    redirectTo('');
+  });
 }
 
 setEventListeners();
